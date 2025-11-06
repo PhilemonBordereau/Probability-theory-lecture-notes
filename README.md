@@ -1,4 +1,3 @@
-If you spot any typos in the lecture notes (and there might be a few!), feel free to directly modify the file "main.tex".
-Of course the modifications that you may suggest will first be checked by our team of moderators before being applied to the document. 
+If you spot any typos in the lecture notes (and there might be a few!), feel free to try to fix them by forking this repository and making pull requests, and then we will double check before merging the commits.
 
 The moderators, Luigi and Niccolò
