@@ -88,7 +88,7 @@
 %\newcommand{\comment}[1]{{\color{red}  #1}}
 %\setlength\parindent{0pt}
 
-\title{Basic probability theory 2024}
+\title{Basic probability theory 2025}
 \newcommand{\juhan}[1]{{\color{ForestGreen} #1}} 
 \newcommand\nmD[1]{\left\lVert#1\right\rVert_{\nabla}}
 \newcommand\nmL[1]{\left\lVert#1\right\rVert_{L^2}}
@@ -105,7 +105,7 @@
 \newpage
 \setcounter{tocdepth}{2}
 \setcounter{section}{-1}
-\tableofcontents 
+\tableofcontents
 \makeatletter
 \let\toc@pre\relax
 \let\toc@post\relax
@@ -121,7 +121,7 @@ In this course we will more concentrate on setting up the general mathematical f
 
 \section{Basic framework}
 
-\noindent In this chapter we discuss some basic but important notions of probability theory:
+\noindent In this chapter we discuss some foundational notions of probability theory:
 \begin{itemize}
 \item Probability space
 \item Random variables
@@ -129,7 +129,7 @@ In this course we will more concentrate on setting up the general mathematical f
 \end{itemize}
 
 \subsection{Probability space}
-Our first aim is to motivate the notion of a probability space or a probabilistic model. To do this let us consider two examples:
+Our first aim is to motivate the modern notion of a probability space or a probabilistic model. To do this let us consider two examples:
 
 \begin{enumerate}
 \item A random number with values in $\{1, 2, \dots, 12\}$ e.g. something that comes from a lottery. 
@@ -137,7 +137,7 @@ Our first aim is to motivate the notion of a probability space or a probabilisti
 \end{enumerate}
 In describing these two random phenomena we will still use everyday vocabulary / intuitions. Thereafter we will give the mathematical definitions that will fix the vocabulary for the rest of the course.
 ~\\
-\paragraph{(1) Random number.} To describe a random number mathematically, we basically need three inputs: 
+\paragraph{(1) Random number.} In the modern framework, to describe a random number mathematically, we use three inputs: 
 \begin{itemize}
     \item The set of all possible outcomes: in this case $\Omega = \{1, 2, 3, \dots, 12\}$
     \item The collection of yes / no questions that we can answer about the actual outcome, i.e. this random number. For example:
@@ -156,9 +156,9 @@ Determining the probability really depends on what we want to model - e.g. if we
 
 Now, if we want our model to correspond to the intuitive notion of probability and to predict the fraction of repeated experiments, then these choices are not quite free - we need to add some constraints. E.g. we cannot put in an arbitrary function $\P$: indeed, if we have two events $E_1 \subseteq E_2$ then we should have $\P(E_1) \leq \P(E_2)$ as every time $E_1$ happens, also $E_2$ happens. We should also have $\P(\Omega) = 1$ as something always happens and $\P(E \cup F) = \P(E) + \P(F)$ if $E$ and $F$ are disjoint (why?). Of course not all these constraints are distinct - some might imply others and when giving the definition of a probability space below we will purify and choose only some conditions that will then mathematically imply all the others. 
 \\
-\paragraph{(2) Weather in Lausanne the day after.} We would again want to make the three decisions, but here the task is already harder at the very first step. What should be the state space? A natural state space could probably be all possible microscopic states of the atmosphere up to 20km of height over Lausanne...but here we of course have many arbitrary choices - why 20 km, how wide should we look over Leman etc? And in any case, any natural state would be impossibly complicated!
+\paragraph{(2) Weather in Lausanne the day after.} In the modern framework that we define, we would again want to make the three decisions, but here the task is already harder at the very first step. What should be the state space? A natural state space could probably be all possible microscopic states of the atmosphere up to 20km of height over Lausanne...but here we of course have many arbitrary choices - why 20 km, how wide should we look over Leman etc? And in any case, any natural state would be impossibly complicated!
 
-Luckily, we do not actually need to worry about it - we only have to assign probabilities to all the events in the collection of events. And we have some freedom in choosing this collection events - it could  be determined by our possibility to measure the states, e.g. we are able to measure the temperature up to some precision, or the density of $CO_2$ or water molecules to some precision and this determines some subsets of the state space. %We could of course just choose our state space to be exactly so small that we can distinguish each state with our measurement devices, but allowing the state space to be larger and just restricting the set of yes and no questions / events has an advantage - if we get better at observing and measuring we can keep the same sample space and just change the collection of events. In particular, if we have fixed $\P$, we would need to only extend it and not rebuild the whole model.
+Luckily, we do not actually need to worry about it - in our framework we only have to assign probabilities to all the events in our chosen collection of events! And we have some freedom in choosing this collection events - it could  be determined by our possibility to measure the states, e.g. we are able to measure the temperature up to some precision, or the density of $CO_2$ or water molecules to some precision and this determines some subsets of the state space. Moreover, as we get better at measuring, we can always enlarge our model in an incremental way! %We could of course just choose our state space to be exactly so small that we can distinguish each state with our measurement devices, but allowing the state space to be larger and just restricting the set of yes and no questions / events has an advantage - if we get better at observing and measuring we can keep the same sample space and just change the collection of events. In particular, if we have fixed $\P$, we would need to only extend it and not rebuild the whole model.
 
 However, as with the probability function, also for the collection of events there are some natural consistency conditions: we would assume that if one can observe if event $E$ happened, we should be also able to measure if its complement $E^c$ happened. Or if we are able to say if $E$ happened or if $F$ happened, we should be able to say if one of the two happened - i.e. $E \cup F$ should also be an event. And in fact it comes out that this is all we need!
 
@@ -171,9 +171,8 @@ Finally, before giving the mathematical definitions, let us stress again that al
 \subsection{Mathematical definition of a probability space}
 We are now ready to use our mathematical filter and give a mathematical definition of a probability space. In fact, we first use the mathematical purifier to come up with a definition in the restricted setting where $\Omega$ is a finite set, and then generalize it further.
 
-Indeed, the discussions above lead us directly to:
-\begin{defn}[Elementary probability space, Kolmogorov 1933 ]
-An elementary probability space is a triple $(\Omega, \F, \P)$, where
+\begin{defn}[Finite probability space, Kolmogorov 1933 ]
+A finite probability space is a triple $(\Omega, \F, \P)$, where
 \begin{itemize}
 	\item $\Omega$ is a finite set, called the state or sample space or the universe.
 	\item $\F$ is a set of subsets of $\Omega$, satisfying:
@@ -190,7 +189,13 @@ Notice that some properties discussed above, like the fact that for events $E_1 
 
 Now, most phenomena in the real world can be described by finite sets just because we are able to measure things only to a finite level of precision. However, like the notion of a continuous or differentiable function helps to simplify our mathematical descriptions of reality and thus improve our understanding, continuous probability spaces also make the mathematical descriptions neater, simpler and thereby also make it easier to understand and study the underlying random phenomena. 
 
-Some natural examples where infinite sample spaces come in: an uniform point on a line segment e.g. stemming from breaking a stick into several pieces; the position on the street where the first raindrop of the day falls; or the space of all infinite sequences of coin tosses. In all these cases the mathematically natural state space is even uncountable. Countably infinite state spaces can also come up: for example if we want to model the first moment that a repeated coin toss comes up heads, the value might be $1, 2, 3$ or with very very small probability also $10^{10}$, so a natural state space would contain all natural numbers.
+Some natural examples where infinite sample spaces come in: 
+\begin{itemize}
+\item an uniform point on a line segment e.g. stemming from breaking a stick into several pieces; 
+\item the position on the street where the first raindrop of the day falls; 
+\item or the space of all infinite sequences of coin tosses. 
+\end{itemize}
+In all these cases the mathematically natural state space is even uncountable. Countably infinite state spaces can also come up: for example if we want to model the first moment that a repeated coin toss comes up heads, the value might be $1, 2, 3$ or with very very small probability also $10^{10}$, and thus a natural state space would contain all natural numbers.
 
 So let us state the general definition:
 \begin{defn}[Probability space, Kolmogorov 1933 ]
@@ -407,7 +412,19 @@ the following random variables have the same law:
 \item Number of prime factors when we choose uniformly a number among $\{1,2,3,4\}$.
 \end{itemize}
 
-In some sense a large part of this course will be about studying and describing probability laws of random variables. %Let us here see how they help us describe a slightly more complicated probabilistic model than coin tosses.
+In some sense a large part of this course will be about studying and describing probability laws of random variables. 
+
+There are of also other notions of equality for random variables:
+\begin{itemize}
+\item We say that two random variables $X, Y$ defined on the same probability space $(\Omega, \F, \P)$ are everywhere equal if for all $\omega \in \Omega$ we have that $X(\omega) = Y(\omega)$
+\item  We say that two random variables $X, Y$ defined on the same probability space $(\Omega, \F, \P)$ are almost surely equal if $\P(\{\omega: X(\omega) = Y(\omega)\}) = 1$. Here, it of course first needs to be showed that $\{\omega: X(\omega) = Y(\omega)\}$ is an event, i.e. belongs to $\F$ - this is on the example sheet.
+\end{itemize}
+Clearly everywhere equality implies almost everywhere equality and the converse is false - e.g. consider the random variables $X(\omega) := \omega1_{\omega \neq 1/2}$ and $Y(\omega) := \omega$ on the probability space $([0,1], \F_B, \P_U)$. It is also clear that equality in law cannot imply almost sure equality, even if the random variables would be defined on the same probability space. Finally,
+
+\begin{exo}
+Let $X, Y$ be two random variables defined on the same probability space and almost surely equal. Then they are also equal in law.
+\end{exo}
+%Let us here see how they help us describe a slightly more complicated probabilistic model than coin tosses.
 
 \begin{comment}
 \subsubsection{The model of uniform random graphs}
@@ -451,6 +468,7 @@ Consider the probability model for uniform random graphs.
 \end{exo}
 
 \end{comment}
+
 \section{Conditional probability and independence}
 
 In general, if we learn something new about our random phenomena, this knowledge influences and often changes our predictions for the rest of the model.
@@ -770,15 +788,15 @@ We have seen that the probability space for $n$ fair coin tosses can be modelled
 
 Now, let us look at this as follows:
 \begin{itemize}
-\item Each $n$-tuples is just an element of the product space $\{H, T\} \times \cdots \{H,T\}$, so we can use as $\Omega$ the product space. Let's denote also by $\Omega_0 = \{H, T\}$ the state spaces for the coordinates.
-\item The power-set is the smallest $\sigma-$algebra containing all sets of the form $E_1 \times \cdots \times E_n$ with each $E_i$ in the power-set of a single coordinate $\{H,T\}$
+\item Each $n$-tuple can be seen as an element of the product space $\{H, T\} \times \cdots \{H,T\}$, so we can use as $\Omega$ the product space. Let's denote also by $\Omega_0 = \{H, T\}$ the state spaces for the coordinates.
+\item Observe that the power-set of $\Omega$ is also at the same time the smallest $\sigma-$algebra containing all sets of the form $E_1 \times \cdots \times E_n$ with each $E_i$ in the power-set of a single coordinate $\{H,T\}$
 \item The uniform probability measure on $\Omega$ satisfies by definition
 $$\P(E_1 \times \cdots E_n) = \P_0(E_1) \cdots \P_0(E_n),$$
 where $\P_0$ is the uniform probability measure on the space of a single toss.
 \item Finally the fact that the tosses are independent comes down to the following: all events $F_1, \dots, F_n$ of the form $F_i = \Omega_0 \times \Omega_0 \times \dots E_i \times \dots \times \Omega_0$ with $E_i \in \F_i$ are mutually independent:
 indeed for $i \neq j $ we have for example
 $$\P(\Omega_0 \times \Omega_0 \times \dots E_i \times \dots \times \Omega_0 \cap \Omega_0 \times \Omega_0 \times \dots E_j \times \dots \times \Omega_0) = \P(\Omega_0 \times \Omega_0 \times E_i \times \Omega_0 \dots \times E_j \times \Omega_0 \dots \times \Omega_0)$$
-which by above equals $\P_0(E_i)\times \P_0(E_j)$ which again by above is equal to the product of $\P(\Omega_0 \times \Omega_0 \times \dots E_i \times \dots \times \Omega_0)$ and $\P(\Omega_0 \times \Omega_0 \times \dots E_j \times \dots \times \Omega_0$.
+which by above equals $\P_0(E_i)\times \P_0(E_j)$ which again by above is equal to the product of $\P(\Omega_0 \times \Omega_0 \times \dots E_i \times \dots \times \Omega_0)$ and $\P(\Omega_0 \times \Omega_0 \times \dots E_j \times \dots \times \Omega_0)$.
 \end{itemize}
 \end{eg}
 
@@ -790,7 +808,7 @@ Let us follows this through mathematically, by first discussing product spaces i
 
 So let us have a brief look at the construction of product spaces. Consider probability spaces $(\Omega_i, \F_i, \P_i)$ for $i = 1,2 \dots$. Then to construct the product probability space we need a product $\sigma-$algebra and a product measure.
 \begin{enumerate}
-    \item The product $\sigma-$algebra $\F_\Pi$ is simple and natural: it is the smallest $\sigma-$algebra containing all $E_{i_1} \times \cdots \times E_{i_n}$ with $E_{i_j} \in \F_{i_j}$ for all $j = 1 \dots n$ and $\{i_j\}_{j = 1 \dots n}$ a finite subset of $\N$.
+    \item The product $\sigma-$algebra $\F_\Pi$ is simple and natural: it is the smallest $\sigma-$algebra containing all $E_{i_1} \times \cdots \times E_{i_n}$ with $E_{i_j} \in \F_{i_j}$ for all $j = 1 \dots n$ and $\{i_j\}_{j = 1 \dots n}$ a finite subset of $\N$. We stress that it is not equal to the set of all sets of the form $E_{i_1} \times \cdots \times E_{i_n}$ even on a finite product space. \footnote{For example, even in the example above for $2$ coin tosses you can convince yourself that the set $\{(H, H),(T,T)\}$ is not of the product form. A similar thing happens in the product topology. Also notice that whereas the collection of all sets of the form $E_1 \times ... \times E_n$ with $E_i \in \F_i$ can be put canonically in a correspondence with $\F_1 \times \dots \F_n$ (one has to be careful with empty sets), they are formally not the same thing - first gives products of $n$ sets, the other $n$-tuples of sets.}
     \item The product probability measure $\P_\Pi$ of $\P_1, \P_2, \dots$ on $(\Pi_{i \geq  1} \Omega_i, \F_\Pi)$ also sounds simple: it is the only probability measure such that $$\P(E_{i_1} \times \cdots \times E_{i_n}) = \Pi_{j = 1}^n\P_i(E_{i_j})$$ for all $E_{i_1} \times \cdot \times E_{i_n}$ with $E_{i_j} \in \F_{i_j}$ for $j = 1 \dots n$.   However, its construction and uniqueness even in the case of finite products is technical for general probability spaces and out of the scope of this course.
 \end{enumerate}
 
@@ -805,7 +823,11 @@ for any finite subset $J \subset \N$ and any event $E$ of the form $E = \Pi_{i \
 We call such a measure the product measure of the collection $((\Omega_i, \F_i, \P_i))_{i \geq 1}$.
 \end{thm}
 
-It is rather easy to see the existence and uniqueness in the case of a finite number of discrete probability spaces, so let us do that. Below, we state it in the case where the $\sigma-$algebras are equal to the power set, but as discussed before (see Proposition \ref{prop:disatom}, this essentially encompasses the case of general $\sigma-$algebras on discrete spaces.
+\begin{rem}
+We will in fact mainly use it in the case where $(\Omega_i, \F_i)$ are the real numbers with its Borel $\sigma$-algebra. For such finite products the proof will be done in Analysis IV and in fact can be deduced also from the existence of Lebesgue measure on just $([0,1], \F_B)$! This will be on the non-examinable part of the example sheet.
+\end{rem}
+
+All these difficulties listed, it is actually rather easy to see the existence and uniqueness in the case of a finite number of discrete probability spaces, so let us do that. Below, we state it in the case where the $\sigma-$algebras are equal to the power set, but as discussed before (see Proposition \ref{prop:disatom}, this essentially encompasses the case of general $\sigma-$algebras on discrete spaces.
 
 \begin{lemma}[Discrete product spaces]\label{lem:discprod}
 Let $(\Omega_i, \Po(\Omega_i), \P_i)$ for $i = 1 \dots n$ be discrete probability spaces.
@@ -1043,7 +1065,18 @@ In fact, it comes out the conversely each cumulative distribution function gives
 Each cumulative distribution function $F$ gives rise to a unique law of a random variable $X$ such that $F_X(x) = \P_X((-\infty,x])$. In other words c.d.f.s are in one to one correspondence with probability measures $\P$ on $(\R, \F_B)$.
 \end{thm}
 
-We admit this theorem in the general case, but will again prove the discrete case. Let us look at a simple example:
+We admit this theorem in the general case, but let us sketch how the existence part of theorem follows from the existence of the uniform measure on $([0,1], \F_E)$. This method is also used in modelling random variables on computers:
+
+\begin{proof}[Sketch of how to construct random variables from the uniform random variable:]
+Suppose we are given a cumulative distribution function $F$. The idea is to construct the random variables using the probability space $P_U$ on $((0,1], \F_{E}, \P_U)$, i.e. the unit interval with the uniform measure. We aim to find a suitable map from the interval to $\R$ that maps the uniform random variable $X_U$ to the one we aim to construct.
+
+To do this define $X_F: (0,1] \to \R$ by $$X_F(x) := \inf_{y \in \R}\{F(y) \geq x\}.$$ Then clearly $X_F$ is non-decreasing and in fact this suffices (see the exercise sheet) for it to be measurable from $((0,1], \F_{E})$ to $(\R, \F_E)$. Hence $X_F$ is a random variable \footnote{It is sometimes called the generalized quantile function and can be seen as defining the left-continuous inverse of the function $F$}.
+
+But now 
+$$\P_U(X_F \in (-\infty,x]) = \P_U((0,\sup_{z \in (0,1]}\{z < F(x)\})) = \P_U((0,F(x)]) = F(x)$$
+and hence indeed $F$ is the cumulative distribution function of the random variable $X_F$. 
+ 
+\end{proof}
 
 \begin{eg}
 
@@ -1083,7 +1116,6 @@ This is on exercise sheet.
 Let us also exhibit the c.d.f. of the uniform random variable $U$ taking values uniformly in $[0,1]$. It is given by $F_U := x1_{x \in [0,1]} + 1_{x > 1}$. By the proposition above we can see that for any interval $(a,b) \subseteq [0,1]$, $\P(U \in (a,b)) = b-a$.
 \end{eg}
 
-
 From above we see that all jumps of $F_X$ correspond to points where $\P(X = x) > 0$. In fact there can be only countably many of them.
 
 \begin{lemma}
@@ -1109,15 +1141,13 @@ $$ f(x) = \sum_{s \in S} c_s1_{x \geq s}.$$
 \end{defn}
 Notice that this set $S$ could be dense, like the set of rational numbers, making it hard to imagine as a staircase function!
 
-In the other extreme $F_X$ could also be everywhere continuous. These observations help us separate out two classes of random variables.
+In the other extreme $F_X$ could also be everywhere continuous. These observations are behind singling out discrete and continuous random variables:
 
-\subsubsection{Classification of random variables}
-
-\begin{defn}[Discrete vs continuous random variables]
+\begin{defn}[Discrete and continuous random variables]
 A random variable is called discrete if its c.d.f. $F_X$ is piece-wise constant changing value at most countable many times. It is called continuous if its c.d.f. $F_X$ is continuous.
 \end{defn}
 
-These definitions look a bit abstract / non-telling from the probabilistic perspective and a priori differs from the definition we gave on the example sheet! But no need to worry, it does give the same object:
+These definitions look a bit abstract / non-telling from the probabilistic perspective. The following exercise redefines them in a different way:
 
 \begin{exo}[Discrete vs random variables ver 2]
 Consider a random variable $X$. Prove that
@@ -1130,16 +1160,19 @@ Consider a random variable $X$. Prove that
 
 Notice that not every random variable is either discrete or continuous, there could be also mixtures of the two, e.g. one could imagine a c.d.f. given by $F(x) = 0.5\cdot 1_{x \geq 0} + 0.5\cdot x\cdot1_{x \in [0,1)} +0.5\cdot 1_{x \geq 1}$ (What does it correspond to?).
 
-The following proposition says, the c.d.f. of any random variable can be written as a convex combination of c.d.f-s of a discrete and continuous random variable. 
+%The following proposition says, the c.d.f. of any random variable can be written as a convex combination of c.d.f-s of a discrete and continuous random variable. 
 
-\begin{prop}\label{prop:cdfsum}
-Any cumulative distribution function $F$ can be written uniquely as convex combination of a continuous c.d.f $F_c$ and a piece-wise constant c.d.f. with countably many jumps $F_j$ i.e. for some $a \in [0,1]$ we have that  $F = a F_{j} + (1-a)F_{c}$.
-\end{prop}
+%\begin{prop}\label{prop:cdfsum}
+%Any cumulative distribution function $F$ can be written uniquely as convex combination of a continuous c.d.f $F_c$ and a piece-wise constant c.d.f. with countably many jumps $F_j$ i.e. for some $a \in [0,1]$ we have that  $F = a F_{j} + (1-a)F_{c}$.
+%\end{prop}
 
-Moreover, in a later exercise sheet you will see how to interpret this as saying that each random variable can be written as a random sum of a continuous and discrete random variable.
+%The proof, which is really not difficult, but just not central to the story, is left as a non-examinable exercise.
 
+%Moreover, in a later exercise sheet you will see how to interpret this as saying that each random variable can be written as a random sum of a continuous and discrete random variable.
+
+\begin{comment}
 \begin{proof}
-	If $F$ is either continuous or piece-wise constant with countably many jumps, the existence of such writing is clear. So suppose that $F$ is neither. Write $S$ for the countable set of jumps of $F$. Define 
+	%If $F$ is either continuous or piece-wise constant with countably many jumps, the existence of such writing is clear. So suppose that $F$ is neither. Write $S$ for the countable set of jumps of $F$. Define 
 	
 $$\widehat F_{j}(x) = \sum_{s \in S}1_{x \geq s}(F(s) - F(s-)),$$
 which is piece-wise continuous with countably many jumps.
@@ -1159,7 +1192,7 @@ $$F_X = a F_{Y_1} + (1-a)F_{Y_2} = b F_{Z_1} + (1-b)F_{Z_2},$$
 where both $Y_1$ and $Z_1$ are discrete and $Y_2, Z_2$ continuous random variables. Then $a F_{Y_1}  - b F_{Z_1}$ has to be continuous, but also piecewise constant with countably many jumps. As $a F_{Y_1}(-\infty)  - b F_{Z_1}(-\infty) = 0$, the only possibility is that it is constantly zero. As $F_{Y_1}(\infty) = 1 = F_{Z_1}(\infty)$, it follows that $a = b$ and $F_{Y_1} = F_{Z_1}$. Thus also $F_{Y_2} = F_{Z_2}$ and the proposition follows. 
 
 \end{proof}
-
+\end{comment}
 
 \subsection{Examples of discrete random variables}
 
@@ -1170,7 +1203,7 @@ Recall that to characterise the law of a random variable, we can either give the
 
 
 \noindent \textbf{Bernoulli random variable}\\
-As mentioned already, a random variable that takes only values $\{0,1\}$, taking value $1$ with probability $p$ is called a Bernoulli random variable of parameter $p$. It is named after the Swiss mathematician Bernoulli, who also thought that all sciences need mathematics, but mathematics doesn't need any. Leaving you to judge, let us see that these examples come up very often.
+As mentioned already, a random variable that takes only values $\{0,1\}$, taking value $1$ with probability $p$ is called a Bernoulli random variable of parameter $p$. It is named after the Swiss mathematician Jacob Bernoulli, who also thought that all sciences need mathematics, but mathematics doesn't need any. Leaving you to judge, let us see that these examples come up very often.
 
 Namely, on every probability space $(\Omega, \F, \P)$, every indicator function of an event, i.e. $1_E$ gives rise to a Bernoulli random variable and the parameter $p$ is equal to the probability of the event. Indeed for any event $E$ in a probability space $(\Omega, \F, \P)$ the indicator function $1_E: (\Omega, \F) \to (\R, \F)$ is measurable and hence  a random variable. Moreover, it is $\{0,1\}$ valued by definition and $\P(\{1_E = 1\}) = \P(E) = p$. 
 
@@ -1222,8 +1255,9 @@ We say that a random variable $X$ with values in $\N$ is memoryless if for every
 \begin{proof}
 Let us start by proving that the geometric random variable satisfies the memoryless property. First, notice that if $\P(X = 1) = 1$, then $X$ is a degenerate geometric random variable with $p = 1$. So we can suppose that we work in the case $\P(X > 1) > 0$.
 
-Let us check that a geometric r.v. is memoryless. First, it is easy to check that for a geometric random variable $X$, we have that $\P(X > l) = (1-p)^l$ for some $p \in (0,1]$. As by the definition of conditional probability $$\P(X > k+l|X > k) = \frac{\P(X > k+l)}{\P(X > k)},$$ 
-it follows that $\P(X > k+l|X > k) = (1-p)^{k+l-k} = (1-p)^l = \P(X > l)$ as desired.
+The part that geometric r.v. is memoryless is on the example sheet.
+%Let us check that a geometric r.v. is memoryless. First, it is easy to check that for a geometric random variable $X$, we have that $\P(X > l) = (1-p)^l$ for some $p \in (0,1]$. As by the definition of conditional probability $$\P(X > k+l|X > k) = \frac{\P(X > k+l)}{\P(X > k)},$$ 
+%it follows that $\P(X > k+l|X > k) = (1-p)^{k+l-k} = (1-p)^l = \P(X > l)$ as desired.
 
 Now, let us show that each random variable satisfying the memoryless property has the law of a geometric random variable. Again if $\P(1) = 1$, we are done. Otherwise we can write
 $$\P(X > 1+ l| X > 1)\P(X > 1) = \P(X > 1+l).$$
@@ -1275,113 +1309,12 @@ Poisson random variables also behave very well under taking independent copies a
 		\item Prove that then $X_1 + X_2$ is also a Poisson random variable with parameter $\lambda_1 + \lambda_2$. 
 		\item Let now $Y_1, Y_2, \dots$ be independent $Ber(p)$ random variables defined on the same probability space. Prove that $X := \sum_{i = 1}^{X_1} Y_i$ also has the law of $Poi(p\lambda)$ and $X_1 - X$ has the law of $Poi((1-p)\lambda)$ and is independent of $X$.
 	\end{itemize}
+
  %	Now, we consider what is called a Poisson point process on $\N$: This is a collection of i.i.d. random variables $(X_i)_{i \in \N}$ where each $X_i  \sim Poi(\lambda)$. For example you can think that some Newtonian apples fall on each integer. What is the law of the total number of apples on a finite set $S \subseteq \N$? Now colour every apple independently red with probability $p$ and green with probability $1-p$ - i.e. every apple is ripe with probability $p$. Prove that restricting to only ripe / green apples also gives a Poisson point process on $\N$ and that moreover these processes are independent.
 	
 %	Finally, let $i_1$ be the first index of $\N$, which contains at least one apples, let $i_2$ be the second index that contains at least one apple etc. What is the distribution of the vector $(i_1, i_2-i_1, i_3-i_2, \dots)$?
 
 \end{exo}
-\subsubsection{How to choose my distribution - the maximum entropy principle}
-
-We have now seen several examples of discrete random variables with special properties, which may or may not have sounded relevant and were a bit different for each of the examples. A generic question is the following. Suppose we want to model some statistical phenomena using a random variable. From the experiments or theory we can deduce some weak constraints on the probability distribution of the variable - for example the support of the distribution, i.e. which values it takes, and maybe some other parameters obtained from repeated experiments like some sort of average. The question is: which probability distribution should we choose as our model under these constraints? 
-
-Intuitively, we would like to choose a distribution that takes into account these constraints and nothing more. Already Laplace used such an argument: his principle of insufficient reason says that if we only know that we have $n$ outcomes, we should assign each the probability $1/n$. It comes out that somehow the right generalization of this principle of insufficient reason is the principle of maximum entropy - we should choose the probability distribution with maximal entropy, given the constraints. This feels at least intuitively natural, as we are then maximizing our surprise or uncertainty about what is happening. The principle of maximum entropy was introduced by E. T. Jaynes in the 1950s. 
-
-To state this, let us first introduce the concept of entropy in the realm of discrete random variables. This rich concept is also interesting in itself and I believe you have already met it in your course of computer science as introduced by Shannon, although its origins go back much further in thermodynamics. In essence the entropy of a random variable is a way to formalise the notion of  information content that we learn by observing an outcome. 
-
-\begin{defn}[Discrete (Shannon) entropy]
-	For a discrete random variable $X$ with outcome set $S$ we define the entropy $$H(X) := -\sum_{s \in S} \P(X = s) \log \P(X = s).$$ We also call it the entropy of the probability distribution $\P$.
-\end{defn}
-
-The mentioned link to information content can be thought of in two steps:
-\begin{itemize}
-	\item First, to each event $E$, and in particular to each outcome $\{X = s\}$ we assign a measure of information content or surprise: $-\log \P(E)$. We like this precise measure more than just $\P(E)$ basically because $\log$ is additive under products and hence the information content of two independent events adds up.
- \item Then to measure the information content over all outcomes we take the weighted average of $-\log \P(X = s)$ as in the definition above. Such a weighted average is called the mathematical expectation, as we will shortly see.
-\end{itemize}
-
-\begin{rem}
-Often in computer science / information theory one rather uses $\log_2$ instead of $\log$ - this in some sense is just a choice of units for the information content.
-\end{rem}
-
-\begin{eg}
-One can directly check that for the uniform distribution on $n$ points the entropy is $H = \log n$. Indeed then $\P(X=s) = 1/n$ for any $s$ and the claim follows.
-\end{eg}
-
-Notice that although we defined the discrete entropy for a random variable, it does not depend on the exact values of the random variable - only on how many values with which probability it takes. In particular for example it is direct to see the following Lemma.
-
-\begin{lemma}
-	For any real-valued discrete random variable we have that $H(X) = H(aX +b)$.
-\end{lemma}
-
-Further, the reason of choosing the logarithm in the definition, boils down to the following facts:
-
-\begin{lemma}
-The entropy is non-negative: $H(X) \geq 0$. Moreover, for independent discrete random variables $X, Y$, we have that $H(X,Y) = H(X) + H(Y)$. 
-\end{lemma}
-
-\begin{proof}
-The first part is evident from the fact that $- p \log p \geq 0$ for all $p \in [0,1]$ \footnote{If you wish we take the convention that $0 \log 0 = 0$, which of course also makes a lot of sense by taking $x > 0$ and letting it tend to $0$.}, The proof of the second part is a direct computation on the example sheet.
-\end{proof}
-
-There are many ways to give mathematical characterisations of entropy, i.e. to give a set of intuitive conditions for a measure of information content such that they uniquely characterise the entropy functional. We will not do this in our course, but rather explain a property that makes entropy appear - asymptotic equipartition property.
-
-In this respect, consider i.i.d. non-trivial discrete random variables $X_1, X_2, \dots, X_n$ taking each of the values $s \in S$ with positive probability. Then for each sequence of outcomes $(s_1, s_2, \dots, s_n)$ we can calculate the probability $\P(X_1 = s_1, \dots, X_n = s_2)$. By independence, this is given by $\Pi_{i=1}^n \P(X_i = s_i)$. As each of $\P(X_1=s) \in (0,1)$, these probabilities decay exponentially with $n$, i.e. should be roughly of the form $\exp(cn)$. Is this the case, and how does this $c > 0$ behave? For a given sequence, this will clearly depend on the exact sequence $(s_1, s_2, \dots, s_n)$, so one cannot expect an answer in full generality. 
-
-However, one can determine this exponent for a typical outcome sequence and it is given by the entropy of $X_1$:
-
-\begin{thm}[Asymptotic equipartition property]
-Let $X_1, X_2, \dots$ be  i.i.d. non-trivial discrete random variables, taking values $s \in S$ with positive probability. Denote by $p(s_1, s_2, \dots, s_n)$ the probability of the sequence of outcomes $(s_1, s_2, \dots, s_n)$. Then $\P(|-\frac{1}{n}\log p(X_1, \dots, X_n) - H(X_1)| > \eps)$ converges to $0$ as $n\to\infty$.
-\end{thm}
-
-We will be able to give a simple proof and even a stronger statement of this result towards the end of the course, but I encourage you already to try it out now - this maybe also helps to understand how the notion we are about to introduce simplify our thinking. \\
-
-As said, entropy has many contexts and many uses, but for us the aim was to help select probability laws on discrete sets. Here are two results in this direction.
-
-\begin{lemma}[Uniform distribution has maximum entropy]\label{lem:umax}
-	Consider all probability distributions on $n$ points. Among such distributions, the uniform distribution is the unique maximum entropy distribution.
-\end{lemma}
-
-\begin{proof}
-	Let $Q = (q_i)_{i = 1 \dots n}$ denote a probability distribution on $n$ points. We want to prove that 
-	$$H(Q) = - \sum_{i=1}^n q_i \log q_i \leq \log n.$$
-	We use the fact that $\log x$ is concave on $[0,1]$. Thus we have that 
-	$$H(Q) = \sum_{i=1}^n (q_i \log \frac{n}{q_i}) - \log n \leq \log (\sum_{i=1}^n \frac{q_in}{q_i}) -\log n = \log n^2 - \log n = \log n,$$
-	where we also used that $\sum_{i=1}^n q_i = 1$. Moreover, the equality holds only if $q_i = 1/n$ for all $i$, so in fact the uniform distribution is the unique maximum entropy distribution
-\end{proof}
-
-Similarly we can single out the geometric random variable among all distributions with outcomes in $\N$, however with one extra constraint. Namely, it is maximum entropy distribution on $\N$ among those distributions for which the so called mean or expectation is finite: $\sum_{n \geq 1} n \P(X = n) < \infty$.
-
-
-%For the exos?
-%\begin{lemma}
-	%We have that $H(X,Y) = H(X) + H(Y|X)$, where $H(Y|X) := \sum_{\omega_x}p(\omega_x) H(Y|X = \omega_x)$ is the conditional entropy.
-%\end{lemma}
-
-%\begin{proof}
-	%Let us check this computation. We have that
-	%$$H(X,Y) = - \sum_{\omega_x, \omega_y} p(\omega_x, \omega_y) \log_2 p(\omega_x, \omega_y).$$
-	%Denote by $p(\omega_y|\omega_x)$ the conditional probabilities. Then $p(\omega_x, \omega_y) = p(\omega_x)p(\omega_y|\omega_x)$ and we have that
-	%$$H(X,Y) = -\sum_{\omega_x} (p(\omega_x) \log_2 p(\omega_x)) \sum_{\omega_y}p(\omega_y|\omega_x) - \sum_{\omega_x} %p(\omega_x)\sum_{\omega_y} p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x).$$
-	%But $\sum_{\omega_y}p(\omega_y|\omega_x) = 1$, and thus the claim follows.
-%\end{proof}
-
-%As a simple corollary we also get our first entropy inequality:
-
-%\begin{cor}
-	%We have that $H(X,Y) \leq H(X) + H(Y)$ with equality iff $X$ and $Y$ are independent.
-%\end{cor}	
-
-%\begin{proof}
-	%We already saw that the independent case gives an inequality. So it suffices to prove a strict inequality for all other cases. From the lemma above, we have that $H(X,Y) = H(X) + H(Y|X)$. So it suffices to show that 
-	%$H(Y|X) < H(Y)$ whenever $X, Y$ are not independent. To do this first rewrite
-	%$$-\sum_{\omega_x}p(\omega_x)\sum_{\omega_y} p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x) = \sum_{\omega_y}\sum_{\omega_x}p(\omega_x) (-p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x)).$$
-	%Now, notice that $-x \log x$ is strictly concave on $[0,1]$. Thus, as $\sum_{\omega_x} p(\omega_x) = 1$, we can bound
-	%$$\sum_{\omega_x}p(\omega_x) \left[-p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x)\right]$$
-	%from above by
-	%$$-\left[\sum_{\omega_x}p(\omega_x)p(\omega_y|\omega_x)\right] \log_2 \left[\sum_{\omega_x}p(\omega_x)p(\omega_y|\omega_x)\right] = - p(\omega_y) \log_2 p(\omega_y).$$
-	%As the equality holds only if $p(\omega_y|\omega_x)$ is equal for all $y, x$, the corollary follows.
-%\end{proof}
-
-
 \subsection{Continuous random variables}
 
 Recall that we called a random variable $X$ continuous if $F_X$ was continuous, i.e. without any jumps. From Lemma \ref{lem:cumvsrv} it follows that $\P(X = x) = 0$ for all $x \in \R$.
@@ -1482,11 +1415,13 @@ Let $X_{\mu, \sigma^2}$ be a Gaussian random variable. Further Let $X$ be a stan
 \end{lemma}
 
 \begin{proof}
-This is a direct computation. Let us denote by $F_{\mu, \sigma^2}$ the c.d.f. of $X_{\mu, \sigma^2}$ and by $F_{X}$ the c.d.f. of $X$. Pick $\sigma > 0$ and let us calculate the c.d.f. of $\sigma X + \mu$:
-$$F_{\sigma X + \mu}(t) = \P(\sigma X + \mu \leq t) = \P(X \leq (t-\mu)/\sigma) = F_{X} = \int_{-\infty}^{(t-\mu)/\sigma}\frac{1}{2\pi}\exp(-x^2/2)dx.$$
-We now make a change of variable $y = \sigma x + \mu$ to see that the right hand side equals
-$$\int_{-\infty}^t \frac{1}{\sqrt{2\pi \sigma^2}} \exp(-(y-\mu)^2/2\sigma^2) = F_{\mu, \sigma^2}(t).$$
+On the example sheet.
+%This is a direct computation. Let us denote by $F_{\mu, \sigma^2}$ the c.d.f. of $X_{\mu, \sigma^2}$ and by $F_{X}$ the c.d.f. of $X$. Pick $\sigma > 0$ and let us calculate the c.d.f. of $\sigma X + \mu$:
+%$$F_{\sigma X + \mu}(t) = \P(\sigma X + \mu \leq t) = \P(X \leq (t-\mu)/\sigma) = F_{X} = \int_{-\infty}^{(t-\mu)/\sigma}\frac{1}{2\pi}\exp(-x^2/2)dx.$$
+%We now make a change of variable $y = \sigma x + \mu$ to see that the right hand side equals
+%$$\int_{-\infty}^t \frac{1}{\sqrt{2\pi \sigma^2}} \exp(-(y-\mu)^2/2\sigma^2) = F_{\mu, \sigma^2}(t).$$
 \end{proof}
+
 
 
 \subsection{Random vectors}
@@ -1499,7 +1434,12 @@ Consider a probability space $(\Omega, \F, \P)$. We say that $(X_1, X_2, \dots, 
 
 Marginal laws are just the individual laws of random variables $X_i$ that appear as components of a random vector and that we have been discussing so far. We know how to describe those. Yet they don't encode the relation between the random variables. 
 
-For example consider on the one hand $(X_1, X_2)$, where both $X_1$ and $X_2$ encode independent fair coin tosses. On the other hand, consider $(X_1, \widetilde X_2)$, where $X_1$ is a fair coin toss, but $\widetilde X_2$ is heads when $X_1$ is tails and $\widetilde X_2$ is tails if $X_1$ is heads. Then the marginal laws of the vector $(X_1, X_2)$ and $(X_1, \widetilde X_2)$ are the same (why?), yet they clearly describe very different situations! 
+For example:
+\begin{itemize}
+    \item Consider on the one hand $(X_1, X_2)$, where both $X_1$ and $X_2$ encode independent fair coin tosses. 
+    \item On the other hand, consider $(X_1, \widetilde X_2)$, where $X_1$ is a fair coin toss, but $\widetilde X_2$ is heads when $X_1$ is tails and $\widetilde X_2$ is tails if $X_1$ is heads. 
+\end{itemize}
+    Then the marginal laws of the vector $(X_1, X_2)$ and $(X_1, \widetilde X_2)$ are the same (why?), yet they clearly describe very different situations! 
 
 So how can we mathematically encode this relation between the random variables? In fact, to look at joint laws, it is more natural to look at $(X_1, \dots, X_n)$ not as just a vector of $\R$-valued random variables, but rather as a $\R^n$-valued random variable:
 
@@ -1532,17 +1472,18 @@ This set-up allows us to quickly prove the following basic result:
 Let $\overline X$ be a random vector in $\R^n$ and $\overline a$ any fixed vector in $\R^n$. Then $\sum_{i=1}^n a_i X_i$ is a random variable. Also $\Pi_{i = 1}^n X_i$ is a random variable.
 \end{lemma}
 
-On the exercise sheet you will prove by hand that the sum of two random variables $X_1$ and $X_2$ is a random variable - and you will see, it requires patience!
+Proving by hand that the sum of two random variables $X_1$ and $X_2$ is a random variable requires quite a bit of patience - e.g. think of the case of Bernoulli random variables. But given the Lemma before, it becomes quite easy.
 
 \begin{proof}
-By above $\overline X$ is a measurable function from $(\Omega, \F)$ to $(\R^n, \F_B)$. But now $\Phi: \R^n \to \R$ given by $\Phi(\overline x) = \sum_{i = 1}^n a_i x_i$ is continuous from $(\R^n, \tau_B)$ to $(\R, \tau_B)$ and in particular it is measurable.
+By above $\overline X$ is a measurable function from $(\Omega, \F)$ to $(\R^n, \F_B)$. But now $\Phi: \R^n \to \R$ given by $\Phi(\overline x) = \sum_{i = 1}^n a_i x_i$ is continuous from $(\R^n, \tau_B)$ to $(\R, \tau_B)$ and in particular it is measurable because by the definition of continuity each preimage of an open set is open!
 
-But it is a direct check a concatenation $f_2 \circ f_1$ of measurable maps $f_1: (\Omega, \F) \to (\Omega_1, \F_1)$, $f_2: (\Omega_1, \F_1) \to (\Omega_2, \F_2)$ is $(\Omega, \F) \to (\Omega_2, \F_2)$-measurable. Thus $\sum_{i=1}^n a_i X_i = \Phi(\overline X)$ is measurable from $(\Omega, \F)$ to $(\R,\tau_E)$ and hence a random variable.
+Further, it is a direct check that a concatenation $f_2 \circ f_1$ of measurable maps $f_1: (\Omega, \F) \to (\Omega_1, \F_1)$, $f_2: (\Omega_1, \F_1) \to (\Omega_2, \F_2)$ is $(\Omega, \F) \to (\Omega_2, \F_2)$-measurable. Thus $\sum_{i=1}^n a_i X_i = \Phi(\overline X)$ is measurable from $(\Omega, \F)$ to $(\R,\tau_E)$ and hence a random variable.
 \end{proof}
 
 
 \subsubsection{Joint cumulative distribution function}
-Similarly to the case of a single random variable, random vectors can be characterised by a certain family of functions. 
+Similarly to the case of a single random variable, it now natural to ask for ways to characterise the laws of random vectors. In analogy with the oned-dimensional case, given a random vector $\bar X$ we can consider the functions $F: \R^n \to [0,1]$ given by $
+F_{\bar X}(t_1, \dots, t_n) = \P_{\bar X}((-\infty, t_1] \times \dots \times (-\infty, t_n])$. These functions are called joint cumulative distribution functions and are defined as follows.
 
 \begin{defn}[Joint cumulative distribution function]
 Any function $F: \R^n \to [0,1]$ is called a joint cumulative distribution function (c.d.f.), if it satisfies the following conditions:
@@ -1550,14 +1491,19 @@ Any function $F: \R^n \to [0,1]$ is called a joint cumulative distribution funct
 		\item $F$ is non-decreasing in each coordinate.
 		\item $F(x_1, \dots,x_n) \to 1$ when all of $x_i \to \infty$.
 		\item $F(x_1, \dots, x_n) \to 0$, when at least one of $x_i \to -\infty$.
-		\item $F$ is right-continuous, meaning that for any sequence $(x_1^m, \dots, x_n^m)_{m \geq 1}$ such that for all $m\geq 1$ we have that $x_i^m \geq x_i$, it holds that $F(x_1^m, \dots, x_n^m) \to F(x_1, \dots, x_n)$.
+		\item $F$ is right-continuous, meaning that for any sequence $(x_1^m, \dots, x_n^m)_{m \geq 1}$ such that for all $m\geq 1$ we have that $x_i^m \geq x_i$ and $x_i^m \to x_i$ as $m \to \infty$, it holds that $F(x_1^m, \dots, x_n^m) \to F(x_1, \dots, x_n)$.
+        \item For each $\bar y^1 := (y_1^1, \dots, y_n^1)$ and $\bar y^0 := (y_1^0, \dots, y_n^0)$ with $y_i^1 \leq y_i^0$ for all $i = 1 \dots n$, we have the following Inclusion-Exclusion inequality: 
+        $$\sum_{S \subseteq \{1, \dots, n\}}(-1)^{|S|}F(y_1^{1_{1\in S}},\dots, y_n^{1_{1\in S}}) \geq 0.
+        $$
 	\end{enumerate}
 \end{defn}
 
 Notice that for $n = 1$ we are back to the case of individual c.d.f. Moreover, if we send any $n-1$ coordinates to infinity, then we also obtain the c.d.f. of the remaining coordinate:
 $$F_{X_i}(x_i) = F(\infty, \dots, \infty, x_i, \infty, \dots, \infty).$$
+The condition $(5)$ seems new and maybe scary to begin with but it just guarantees that for every box $B :) [y_1^1, y_2^0] \times \dots \times [y_n^1, y_n^0]$ we have that $\P_{\bar X}(B) \geq 0$.
+We will see on the exercise sheet that this condition is necessary to have the desired one-to-one correspondence between the joint c.d.f.-s and probability measures. In the case $n = 1$ it is automatically satisfied because of monotonicity. 
 
-As mentioned, each random vector uniquely identifies a joint c.d.f. and vice-versa. One part of the proposition is again easy:
+This connection comes in two results lie before. One direction is again easy:
 
 \begin{prop}[Joint c.d.f.s of random vectors]
 Let $\overline X :=(X_1, \dots, X_n)$ be a random vector defined on some probability space $(\Omega, \F, \P)$. Then 
@@ -1606,7 +1552,10 @@ We can now state the key example: \\
 
 \noindent \textbf{Gaussian random vector.} The Gaussian (or also normal) random vector is denoted by $\Nn(\overline \mu,C)$, where $\overline \mu$ is a vector in $\R^n$ and $C$ positive definite symmetric $n \times n$ matrix. We will call $\overline \mu$ the mean of the Gaussian vector, and the matrix $C$ the covariance matrix -- we will get to the reasons for this vocabulary in a few lectures time. The density of the Gaussian random vector is given by:
 $$f_{\overline X}(x_1, \dots,x_n) = \frac{1}{(2\pi)^{n/2}\sqrt{\det(C)}} \exp(-\frac{1}{2}(\overline x - \overline \mu)^TC^{-1}(\overline x - \overline \mu)).$$
-When $\overline \mu = 0$ and $C$ is the $n \times n$ identity matrix $I_n$, we call the law $\Nn(0,I_n)$ the standard Gaussian in $\R^n$. In fact all Gaussian vectors in $\R^n$ are given by just linear transformations of the standard Gaussian - this is what also makes the Gaussians ubiquitous, they behave very well under linear transformations.\\
+When $\overline \mu = 0$ and $C$ is the $n \times n$ identity matrix $I_n$, we call the law $\Nn(0,I_n)$ the standard Gaussian in $\R^n$. 
+
+Gaussian vectors marry well with linear algebra: if we apply a linear transformation to a Gaussian vector, then it remains Gaussian. In fact all Gaussian vectors in $\R^n$ are given by just linear transformations of the standard Gaussian.\\
+
 
 \section{Mathematical expectation}
 
@@ -1792,6 +1741,111 @@ We obtain $\E(X) \geq t \P(X \geq t)$ as desired.
 \end{proof}
 
 Hopefully you got convinced that the notion of mathematical expectation is pretty useful. We will now see how to generalize it to arbitrary, not necessarily discrete random variables.
+
+
+\end{document}
+
+\subsubsection{How to choose my distribution - the maximum entropy principle}
+
+We have now seen several examples of discrete random variables with special properties, which may or may not have sounded relevant and were a bit different for each of the examples. A generic question is the following. Suppose we want to model some statistical phenomena using a random variable. From the experiments or theory we can deduce some weak constraints on the probability distribution of the variable - for example the support of the distribution, i.e. which values it takes, and maybe some other parameters obtained from repeated experiments like some sort of average. The question is: which probability distribution should we choose as our model under these constraints? 
+
+Intuitively, we would like to choose a distribution that takes into account these constraints and nothing more. Already Laplace used such an argument: his principle of insufficient reason says that if we only know that we have $n$ outcomes, we should assign each the probability $1/n$. It comes out that somehow the right generalization of this principle of insufficient reason is the principle of maximum entropy - we should choose the probability distribution with maximal entropy, given the constraints. This feels at least intuitively natural, as we are then maximizing our surprise or uncertainty about what is happening. The principle of maximum entropy was introduced by E. T. Jaynes in the 1950s. 
+
+To state this, let us first introduce the concept of entropy in the realm of discrete random variables. This rich concept is also interesting in itself and I believe you have already met it in your course of computer science as introduced by Shannon, although its origins go back much further in thermodynamics. In essence the entropy of a random variable is a way to formalise the notion of  information content that we learn by observing an outcome. 
+
+\begin{defn}[Discrete (Shannon) entropy]
+	For a discrete random variable $X$ with outcome set $S$ we define the entropy $$H(X) := -\sum_{s \in S} \P(X = s) \log \P(X = s).$$ We also call it the entropy of the probability distribution $\P$.
+\end{defn}
+
+The mentioned link to information content can be thought of in two steps:
+\begin{itemize}
+	\item First, to each event $E$, and in particular to each outcome $\{X = s\}$ we assign a measure of information content or surprise: $-\log \P(E)$. We like this precise measure more than just $\P(E)$ basically because $\log$ is additive under products and hence the information content of two independent events adds up.
+ \item Then to measure the information content over all outcomes we take the weighted average of $-\log \P(X = s)$ as in the definition above. Such a weighted average is called the mathematical expectation, as we will shortly see.
+\end{itemize}
+
+\begin{rem}
+Often in computer science / information theory one rather uses $\log_2$ instead of $\log$ - this in some sense is just a choice of units for the information content.
+\end{rem}
+
+\begin{eg}
+One can directly check that for the uniform distribution on $n$ points the entropy is $H = \log n$. Indeed then $\P(X=s) = 1/n$ for any $s$ and the claim follows.
+\end{eg}
+
+Notice that although we defined the discrete entropy for a random variable, it does not depend on the exact values of the random variable - only on how many values with which probability it takes. In particular for example it is direct to see the following Lemma.
+
+\begin{lemma}
+	For any real-valued discrete random variable we have that $H(X) = H(aX +b)$.
+\end{lemma}
+
+Further, the reason of choosing the logarithm in the definition, boils down to the following facts:
+
+\begin{lemma}
+The entropy is non-negative: $H(X) \geq 0$. Moreover, for independent discrete random variables $X, Y$, we have that $H(X,Y) = H(X) + H(Y)$. 
+\end{lemma}
+
+\begin{proof}
+The first part is evident from the fact that $- p \log p \geq 0$ for all $p \in [0,1]$ \footnote{If you wish we take the convention that $0 \log 0 = 0$, which of course also makes a lot of sense by taking $x > 0$ and letting it tend to $0$.}, The proof of the second part is a direct computation on the example sheet.
+\end{proof}
+
+There are many ways to give mathematical characterisations of entropy, i.e. to give a set of intuitive conditions for a measure of information content such that they uniquely characterise the entropy functional. We will not do this in our course, but rather explain a property that makes entropy appear - asymptotic equipartition property.
+
+In this respect, consider i.i.d. non-trivial discrete random variables $X_1, X_2, \dots, X_n$ taking each of the values $s \in S$ with positive probability. Then for each sequence of outcomes $(s_1, s_2, \dots, s_n)$ we can calculate the probability $\P(X_1 = s_1, \dots, X_n = s_2)$. By independence, this is given by $\Pi_{i=1}^n \P(X_i = s_i)$. As each of $\P(X_1=s) \in (0,1)$, these probabilities decay exponentially with $n$, i.e. should be roughly of the form $\exp(cn)$. Is this the case, and how does this $c > 0$ behave? For a given sequence, this will clearly depend on the exact sequence $(s_1, s_2, \dots, s_n)$, so one cannot expect an answer in full generality. 
+
+However, one can determine this exponent for a typical outcome sequence and it is given by the entropy of $X_1$:
+
+\begin{thm}[Asymptotic equipartition property]
+Let $X_1, X_2, \dots$ be  i.i.d. non-trivial discrete random variables, taking values $s \in S$ with positive probability. Denote by $p(s_1, s_2, \dots, s_n)$ the probability of the sequence of outcomes $(s_1, s_2, \dots, s_n)$. Then $\P(|-\frac{1}{n}\log p(X_1, \dots, X_n) - H(X_1)| > \eps)$ converges to $0$ as $n\to\infty$.
+\end{thm}
+
+We will be able to give a simple proof and even a stronger statement of this result towards the end of the course, but I encourage you already to try it out now - this maybe also helps to understand how the notion we are about to introduce simplify our thinking. \\
+
+As said, entropy has many contexts and many uses, but for us the aim was to help select probability laws on discrete sets. Here are two results in this direction.
+
+\begin{lemma}[Uniform distribution has maximum entropy]\label{lem:umax}
+	Consider all probability distributions on $n$ points. Among such distributions, the uniform distribution is the unique maximum entropy distribution.
+\end{lemma}
+
+\begin{proof}
+	Let $Q = (q_i)_{i = 1 \dots n}$ denote a probability distribution on $n$ points. We want to prove that 
+	$$H(Q) = - \sum_{i=1}^n q_i \log q_i \leq \log n.$$
+	We use the fact that $\log x$ is concave on $[0,1]$. Thus we have that 
+	$$H(Q) = \sum_{i=1}^n (q_i \log \frac{n}{q_i}) - \log n \leq \log (\sum_{i=1}^n \frac{q_in}{q_i}) -\log n = \log n^2 - \log n = \log n,$$
+	where we also used that $\sum_{i=1}^n q_i = 1$. Moreover, the equality holds only if $q_i = 1/n$ for all $i$, so in fact the uniform distribution is the unique maximum entropy distribution
+\end{proof}
+
+Similarly we can single out the geometric random variable among all distributions with outcomes in $\N$, however with one extra constraint. Namely, it is maximum entropy distribution on $\N$ among those distributions for which the so called mean or expectation is finite: $\sum_{n \geq 1} n \P(X = n) < \infty$.
+
+
+%For the exos?
+%\begin{lemma}
+	%We have that $H(X,Y) = H(X) + H(Y|X)$, where $H(Y|X) := \sum_{\omega_x}p(\omega_x) H(Y|X = \omega_x)$ is the conditional entropy.
+%\end{lemma}
+
+%\begin{proof}
+	%Let us check this computation. We have that
+	%$$H(X,Y) = - \sum_{\omega_x, \omega_y} p(\omega_x, \omega_y) \log_2 p(\omega_x, \omega_y).$$
+	%Denote by $p(\omega_y|\omega_x)$ the conditional probabilities. Then $p(\omega_x, \omega_y) = p(\omega_x)p(\omega_y|\omega_x)$ and we have that
+	%$$H(X,Y) = -\sum_{\omega_x} (p(\omega_x) \log_2 p(\omega_x)) \sum_{\omega_y}p(\omega_y|\omega_x) - \sum_{\omega_x} %p(\omega_x)\sum_{\omega_y} p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x).$$
+	%But $\sum_{\omega_y}p(\omega_y|\omega_x) = 1$, and thus the claim follows.
+%\end{proof}
+
+%As a simple corollary we also get our first entropy inequality:
+
+%\begin{cor}
+	%We have that $H(X,Y) \leq H(X) + H(Y)$ with equality iff $X$ and $Y$ are independent.
+%\end{cor}	
+
+%\begin{proof}
+	%We already saw that the independent case gives an inequality. So it suffices to prove a strict inequality for all other cases. From the lemma above, we have that $H(X,Y) = H(X) + H(Y|X)$. So it suffices to show that 
+	%$H(Y|X) < H(Y)$ whenever $X, Y$ are not independent. To do this first rewrite
+	%$$-\sum_{\omega_x}p(\omega_x)\sum_{\omega_y} p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x) = \sum_{\omega_y}\sum_{\omega_x}p(\omega_x) (-p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x)).$$
+	%Now, notice that $-x \log x$ is strictly concave on $[0,1]$. Thus, as $\sum_{\omega_x} p(\omega_x) = 1$, we can bound
+	%$$\sum_{\omega_x}p(\omega_x) \left[-p(\omega_y|\omega_x) \log_2 p(\omega_y|\omega_x)\right]$$
+	%from above by
+	%$$-\left[\sum_{\omega_x}p(\omega_x)p(\omega_y|\omega_x)\right] \log_2 \left[\sum_{\omega_x}p(\omega_x)p(\omega_y|\omega_x)\right] = - p(\omega_y) \log_2 p(\omega_y).$$
+	%As the equality holds only if $p(\omega_y|\omega_x)$ is equal for all $y, x$, the corollary follows.
+%\end{proof}
+
 
 \subsection{Expected value of an arbitrary random variable}
 
@@ -3207,95 +3261,4 @@ Notice that for $n = 1$, we have the Bernoulli random variable. Bernoulli random
 Suppose we have $n$ mutually independent events $E_1, \dots, E_k$ of probability $p$ on some probability space $(\Omega, \F, \P)$. Consider the random number of events that occurs: $X = \sum_{i = 1}^n 1_{E_i}$. Prove that $X$ is a random variable and has the law $Bin(n,p)$.
 \end{exo}
 
-For a concrete lively example, let's go back to the Erdos-Renyi random graph on $n$ vertices, where each edge is independently included with probability $p$. We can then fix some vertex $v$ and consider the random variable $M_v$ giving the number of vertices adjacent to $v$, i.e. linked to $v$ by an edge. The exercise above shows that this random variable has law $Bin(n-1,p)$.\\
-
-%\begin{proof}
-%	Notice that $X \in \{0, \dots, n\}$ and for every $k = 0 \dots n$, $\{X = k\}$ can be written as $$\{X = k\} = \bigcup_{I \subseteq \{1, \dots, n\}, |I| = k}\cap_{i \in I}E_i\cap_{i \notin I}E_i^c.$$ Hence, $X^{-1}((-\infty,x])$ is measurable for any $x$ and $X$ is a random variable.
-	
-%	But now we can write 
-%	$$\P(X =k) = \P(\bigcup_{I \subseteq \{1, \dots, n\}, |I| = k}\cap_{i \in I}E_i\cap_{i \notin I}E_i^c).$$
-%	Observe that all the events in the union are disjoint, and thus
-%	$$\P(X =k) = \sum_{I \subseteq \{1, \dots, n\},  |I| = k}\P(\cap_{i \in I}E_i\cap_{i \notin I}E_i^c).$$
-%	As there are exactly $\{n \choose k\}$ subsets of size $k$, and events $E_i$ are mutually independent, we deduce
-%	$$\P(X = k) = {n \choose k}\Pi_{i \in I}\P(E_i)\Pi_{i \notin I}\P(E_i^c).$$
-%	Plugging now in the fact that for all $E_i$ we have that $\P(E_i) = p$, the result follows.
-%\end{proof}
-
-
-\noindent \textbf{Geometric random variable}\\
-A random variable that takes values in the set $\N$, each value $k$ with probability $p (1-p)^{k-1}$ for some $0 < p \leq 1$ is called a geometric random variable of parameter $p$. We denote the law of a geometric random variable by $Geo(p)$. One should again check that this even defines a random variable, by seeing that the probabilities do sum to one.
-
-A geometric random variable describes the following situation: we have independent events $E_1, E_2, \dots $ each of success probability $p$ and we are asking for the smallest index $k$ such that the event $E_k$ happens. For example, $Geo(1/2)$ describes the number of tosses needed to get a first heads. This will be made precise on the exercise sheet.
-
-There is also a nice property that characterizes the geometric r.v.:
-
-\begin{lemma}[Geometric r.v. is the only memoryless random variable]
-We say that a random variable $X$ with values in $\N$ is memoryless if for every $k, l \in \N$ we have that $\P_X(X > k+l| X > k) = \P_X(X>l)$. Every geometric random variable is memoryless, and in fact these are the only examples of memoryless random variables on $\N$.
-\end{lemma}
-
-\begin{proof}
-Let us start by proving that the geometric random variable satisfies the memoryless property. First, notice that if $\P(X = 1) = 1$, then $X$ is a degenerate geometric random variable with $p = 1$. So we can suppose that we work in the case $\P(X > 1) > 0$.
-
-Let us check that a geometric r.v. is memoryless. First, it is easy to check that for a geometric random variable $X$, we have that $\P(X > l) = (1-p)^l$ for some $p \in (0,1]$. As by the definition of conditional probability $$\P(X > k+l|X > k) = \frac{\P(X > k+l)}{\P(X > k)},$$ 
-it follows that $\P(X > k+l|X > k) = (1-p)^{k+l-k} = (1-p)^l = \P(X > l)$ as desired.
-
-Now, let us show that each random variable satisfying the memoryless property has the law of a geometric random variable. Again if $\P(1) = 1$, we are done. Otherwise we can write
-$$\P(X > 1+ l| X > 1)\P(X > 1) = \P(X > 1+l).$$
-As for a memoryless random variable $\P(X > l) = \P(X > 1+ l| X > 1)$, we obtain
-$$\P(X > l)\P(X>1) = \P(X > l+1).$$
-Thus inductively $\P(X > l) = \P(X > 1)^l$ and hence $X$ is a geometric random variable of parameter $p = 1 - \P(X > 1)$.
-\end{proof}~\\
-
-\noindent \textbf{Poisson random variable}\\
-
-Poisson was a French mathematician who has famously said that the life is good for only two things - mathematics and teaching mathematics. His random variables come up quite often. 
-
-The Poisson random variable is a discrete random variable with values in $\{0\} \cup \N$ and taking the value $k$ with probability $$e^{-\lambda}\frac{\lambda^k}{k!}$$
-for some $\lambda > 0$. We denote this distribution by $Poi(\lambda)$. Poisson random variables describe occurrences of rare events over some time period, where events happening in any two consecutive time periods are independent. For example, it has been used to model
-\begin{itemize}
-	\item The number of visitors at a small off-road museum.
-	\item More widely, the number of stars in a unit of the space.
-	\item Or more darkly, it was used to also model the number of soldiers killed by horse kicks in the Prussian army.
-\end{itemize}
-
-One way we see the Poisson r.v. appearing is via a limit of the Binomial distribution if the success probability $p$ scales like $1/n$:
-
-\begin{lemma}[Poisson random variable as the limit of Binomials]
-Consider the Binomial distribution $Bin(n,\lambda/n)$. Prove that as $n \to \infty$ it converges to $Poi(\lambda)$ in the sense that for every $k\in \{0\} \cup \N$, we have that $$\P(Bin(n,\lambda/n) = k) \to e^{-\lambda}\frac{\lambda^k}{k!}.$$
-\end{lemma}
-
-\begin{proof}
-By definition, for any fixed $n \in \N$ and $k\in \{0\} \cup \N$, we have
-$$\P(Bin(n,\lambda/n) = k) = {n \choose k}\frac{\lambda^k}{n^k}\left(1-\frac{\lambda}{n}\right)^{n-k}.$$
-Using
-$${n \choose k} = \frac{n!}{(n-k)!k!} = \frac{n(n-1)\cdots (n-k+1)}{k!}.$$
-we can write
-$$\P(Bin(n,\lambda/n) = k) = \frac{\lambda^k}{k!}\left(1-\frac{\lambda}{n}\right)^n \frac{n(n-1)\cdots (n-k+1)}{n^k}\left(1-\frac{\lambda}{n}\right)^{-k}.$$
-But now as $n \to \infty$
-$$\left(1-\frac{\lambda}{n}\right)^n \to e^{-\lambda}.$$
-Moreover, for any fixed $t > 0$ also $\frac{n-t}{n} \to 1$ as $n \to \infty$ and hence
-$$\frac{n(n-1)\cdots (n-k+1)}{n^k} \to 1$$
-and
-$$\left(1-\frac{\lambda}{n}\right)^{-k} = \left(\frac{n-\lambda}{n}\right)^{-k}\to 1,$$
-proving the lemma.\end{proof}
-
-To connect this to the occurrences of rare events described before, one could think as follows. Suppose we try to model the number of arrivals over time window $[0,1]$, say one year in a distant location. We then cut a time-window $[0,1]$ into $n$ equal time-segments of length $1/n$ with $n$ large, say into 365 days, so that we can suppose that at each time-segment, say each day, there is at most one arrival. In this case we can describe the arrival or non-arrival using $Ber(p)$ or $1_E$ for some event $E$. If we further suppose that all days are alike, we can take this parameter $p$ to be the same for all time-segments of the same length, e.g. for all days. Moreover, if we suppose that an arrival in one time-segment does not influence arrivals in other time-intervals, we can assume that all events $E$ corresponding to different time intervals are mutually independent. Hence the total number of arrivals is the number of independent events happening, when the event probability is $p$ - we saw above that this gives a $Bin(n,p)$ random variable. But now, if you check carefully the proof above, you see that if $p$ is not of the form $\lambda/n$ for some $\lambda > 0$, then in fact the number of events will either go to infinity or go to zero - i.e. to have a non-trivial random variable in the limit $n \to \infty$, we are forced to set $p = \lambda/n$.
-
-Poisson random variables also behave very well under taking independent copies. In particular, the related Poisson point processes is a very interesting random process:
-
-\begin{exo}[Poisson random variables]
-	Let $X_1 \sim Poi(\lambda_1)$ and $X_2 \sim Poi(\lambda_2)$ be two independent random variables defined on the same probability space. 
-	\begin{itemize}
-		\item Prove that then $X_1 + X_2$ is also a Poisson random variable with parameter $\lambda_1 + \lambda_2$. 
-		\item Let now $Y_1, Y_2, \dots$ be independent $Ber(p)$ random variables defined on the same probability space. Prove that $X := \sum_{i = 1}^{X_1} Y_i$ also has the law of $Poi(p\lambda)$ and $X_1 - X$ has the law of $Poi((1-p)\lambda)$ and is independent of $X$.
-	\end{itemize}
-	Now, we consider what is called a Poisson point process on $\N$: This is a collection of i.i.d. random variables $(X_i)_{i \in \N}$ where each $X_i  \sim Poi(\lambda)$. For example you can think that some Newtonian apples fall on each integer. What is the law of the total number of apples on a finite set $S \subseteq \N$? Now colour every apple independently red with probability $p$ and green with probability $1-p$ - i.e. every apple is ripe with probability $p$. Prove that restricting to only ripe / green apples also gives a Poisson point process on $\N$ and that moreover these processes are independent.
-	
-	Finally, let $i_1$ be the first index of $\N$, which contains at least one apples, let $i_2$ be the second index that contains at least one apple etc. What is the distribution of the vector $(i_1, i_2-i_1, i_3-i_2, \dots)$?
-\end{exo}
-%Finally, taking the limit is a natural thing to do, as cutting it to exactly $n$ pieces is quite arbitrary, and if the assumptions above hold for $n$, they coul also hold for smaller time-segments. 
-%But now why did we choose exactly to cut time into $n$ pieces? Maybe it is reasonable to expect that you could cut into arbitrarily small time intervals and the number of arrivals still behaves independently on each interval, and the probability of an arrival scales linearly with time-length. This would correspond to taking the limit $n \to \infty$ in the description, and hence by the previous lemma we see that the Poisson distribution $Poi(\lambda)$ describes the number of events that occurs in the whole time-interval $[0,1]$. 
-
-
-\end{document}
-
+For a concrete lively example, let's go back to the Erdos-Renyi random graph on $n$ vertices, where each edge is independently included with probability $p$. We can then fix some vertex $v$ and consider the random variable 
